@@ -226,34 +226,7 @@ class _checkInPageState extends State<checkInPage> {
               child: themeButton(
                 name: 'Scan Ticket',
                 onClick: () {
-                  // scanBarcodeagain();
-                  showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: new Icon(Icons.check, color: Colors.green, size: 100,),
-                        content: new Text("Check-in Successfully", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
-                        actions: <Widget>[
-                          CupertinoDialogAction(
-                            onPressed: (){
-                              Navigator.pop(context);
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) => scaningPage()));
-                            },
-                            child: Text("Go Back", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
-                          ),
-                          CupertinoDialogAction(
-                            onPressed: (){
-                              Navigator.pop(context);
-                              scanBarcodeagain();
-                            },
-                            child: Text("Scan again", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
-                          )
-                        ],
-                      )
-                  );
+                  scanBarcodeagain();
                 },
               ),
             )

@@ -18,23 +18,24 @@ class _formTextState extends State<formText> {
   TextStyle _labelStyle_l = TextStyle(color: Colors.black54);
 
   TextStyle _hintStyle_l = TextStyle(color: Colors.black);
- bool _showPassword = false;
+  bool _showPassword1 = true;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
 
-      obscureText: widget.label == 'Password' ? _showPassword:false,
+      obscureText: widget.label == 'Password' ? _showPassword1:false,
       readOnly: widget.readonlyye,
       controller: widget.controllercc,
       decoration: InputDecoration(
         suffixIcon: widget.label == 'Password' ? GestureDetector(
           onTap: () {
             setState(() {
-              _showPassword = !_showPassword;
+              _showPassword1 = !_showPassword1;
             });
           },
           child: Icon(
-            _showPassword ? Icons.visibility : Icons.visibility_off,
+            _showPassword1 ? Icons.visibility : Icons.visibility_off,
           ),
         ) : null,
         enabledBorder: OutlineInputBorder(

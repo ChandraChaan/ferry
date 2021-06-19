@@ -1,0 +1,5 @@
+keytool -genkey -v -keystore D:\me\ferryApp\ferryapp\keyChanges\FerryAppKeystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias ferryappli
+
+pw: ferryapp
+alies: ferryappli
+pw1: ferryapp1

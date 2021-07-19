@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ferryapp/presantation/common/body_theme.dart';
 import 'package:ferryapp/presantation/common/button.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,8 @@ class _scaningPageState extends State<scaningPage> {
 
   @override
   Widget build(BuildContext context) {
+    log('this is user id for  chechking');
+// log(widget.useriD);
     return themeBody(
       body: SingleChildScrollView(
         child: Column(
@@ -82,7 +86,8 @@ class _scaningPageState extends State<scaningPage> {
       });
       print(barcodeurl);
       if (barcodeurl != "-1") {
-        print(barcodeurl);
+        // print(barcodeurl);
+        log('here space is came :' + barcodeurl);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(

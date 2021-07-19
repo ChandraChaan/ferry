@@ -50,6 +50,7 @@ class loginscreen extends StatelessWidget {
             themeButton(
               name: 'Login',
               onClick: () {
+
                 if (username_c.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     backgroundColor:Colors.red,

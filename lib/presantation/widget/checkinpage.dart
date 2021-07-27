@@ -262,7 +262,7 @@ class _checkInPageState extends State<checkInPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Payment Date',
+                  'Departure Date',
                   style: Style,
                 ),
                 SizedBox(
@@ -322,7 +322,7 @@ class _checkInPageState extends State<checkInPage> {
                           name: 'Scan Ticket',
                           onClick: () {
                             log('its working chandra');
-                            scanBarcodeagain();
+                            scanBarcodeagain(barcodeurl);
                           },
                         ),
                       )
@@ -339,7 +339,7 @@ class _checkInPageState extends State<checkInPage> {
                     child: themeButton(
                       name: 'Scan Ticket',
                       onClick: () {
-                        scanBarcodeagain();
+                        scanBarcodeagain(barcodeurl);
                       },
                     ),
                   )
@@ -403,7 +403,7 @@ class _checkInPageState extends State<checkInPage> {
                   CupertinoDialogAction(
                     onPressed: () {
                       Navigator.pop(context);
-                      scanBarcodeagain();
+                      scanBarcodeagain(barcodeurl);
                     },
                     child: Text(
                       "Scan again",
@@ -423,7 +423,8 @@ class _checkInPageState extends State<checkInPage> {
     }
   }
 
-  Future<void> scanBarcodeagain() async {
+  Future<void> scanBarcodeagain(String beforebarcode) async {
+    // log(beforebarcode);
     log('scanning start');
     try {
       final barcode = await FlutterBarcodeScanner.scanBarcode(
@@ -434,21 +435,39 @@ class _checkInPageState extends State<checkInPage> {
       );
 
       if (!mounted) return;
-
       setState(() {
-        barcodeurl = barcode;
+        if(barcode.contains('ferry')){
+          barcodeurl = barcode;
+        }else{
+          barcodeurl = '-1';
+        }
+
       });
+
       log(barcodeurl);
       log('bar code scaned');
       if (barcodeurl != "-1") {
         log(barcodeurl);
         getagainUserCheckdata();
-      } else {
+      }
+      else {
+        setState(() {
+          tickid.text = '';
+          remaerk.text = '';
+          journy.text = '';
+          paymentid.text = '';
+          checkintime.text = '';
+          chekinby.text = '';
+          checkin = false;
+          checkin == true ? Heighty = 13 : Heighty = 23;
+        });
+
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: Colors.red,
           behavior: SnackBarBehavior.floating,
-          content: Text('Please scan properly'),
+          content: Text('Please scan properly', style: TextStyle(fontSize:31,fontWeight: FontWeight.bold),),
         ));
+
       }
     } on PlatformException {
       log('this is error');
